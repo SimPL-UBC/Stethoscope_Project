@@ -145,14 +145,8 @@
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/simpl_logo.png" class="logo__image only-light" alt="Stethoscope Project - Home"/>
-    <script>document.write(`<img src="../_static/simpl_logo.png" class="logo__image only-dark" alt="Stethoscope Project - Home"/>`);</script>
   
+    <p class="title logo__title">Stethoscope Project</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -374,12 +368,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-procedure">Recording Procedure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-result">Recording Result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#challange">Challange</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress">Progress</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recording">Recording</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confused-about-ml-output">Confused about ML Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
 </ul>
 </li>
 </ul>
@@ -395,22 +398,56 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="weekly-report">
 <h1>09/05/24 Weekly Report<a class="headerlink" href="#weekly-report" title="Permalink to this heading">#</a></h1>
-<section id="recording-procedure">
-<h2>Recording Procedure<a class="headerlink" href="#recording-procedure" title="Permalink to this heading">#</a></h2>
-</section>
-<section id="recording-result">
-<h2>Recording Result<a class="headerlink" href="#recording-result" title="Permalink to this heading">#</a></h2>
+<section id="progress">
+<h2>Progress<a class="headerlink" href="#progress" title="Permalink to this heading">#</a></h2>
+<section id="recording">
+<h3>Recording<a class="headerlink" href="#recording" title="Permalink to this heading">#</a></h3>
+<p>I’ve recorded 2 trial run when I was sleeping.
+Here are the images showing how the recording was taken.</p>
+<p><img alt="Sealing microphone" src="../_images/StetV00_Proc_1.jpg" /></p>
+<p><img alt="Stethoscope location" src="../_images/StetV00_Proc_2.jpg" /></p>
 </section>
 <section id="dataset">
-<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h2>
-</section>
+<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h3>
+<p>Below are some datasets I found online that uses microphone or stethoscope as a recording device.
+Some of them are annotated and verified by expert, and even used in research paper.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Dataset List<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://paperswithcode.com/dataset/icbhi-respiratory-sound-database">ICBHI</a><br />
+<a class="reference external" href="https://gitlab.com/techsupportHF/HF_Lung_V1">HF Lung V1</a><br />
+<a class="reference external" href="https://data.mendeley.com/datasets/jwyy9np4gv/3">Fraiwan Data</a><br />
+<a class="reference external" href="https://www.covid-19-sounds.org/en/blog/neurips_dataset.html#:~:text=To%20the%20best%20of%20our,%2C%20cough%2C%20and%20voice%20recordings.">Covid-19 Sounds</a><br />
+<a class="reference external" href="https://www.kaggle.com/datasets/vbookshelf/respiratory-sound-database/data">Kaggle, example</a></p>
+</div>
+</details></section>
 <section id="machine-learning-algorithm">
-<h2>Machine Learning Algorithm<a class="headerlink" href="#machine-learning-algorithm" title="Permalink to this heading">#</a></h2>
+<h3>Machine Learning Algorithm<a class="headerlink" href="#machine-learning-algorithm" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="problem-and-improvement">
-<h2>Problem and Improvement<a class="headerlink" href="#problem-and-improvement" title="Permalink to this heading">#</a></h2>
-<section id="challange">
-<h3>Challange<a class="headerlink" href="#challange" title="Permalink to this heading">#</a></h3>
+<h3>Problem and Improvement<a class="headerlink" href="#problem-and-improvement" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="challenge">
+<h2>Challenge<a class="headerlink" href="#challenge" title="Permalink to this heading">#</a></h2>
+<section id="dataset-validation">
+<h3>Dataset Validation<a class="headerlink" href="#dataset-validation" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="heartbeat-detection">
+<h3>Heartbeat detection<a class="headerlink" href="#heartbeat-detection" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="confused-about-ml-output">
+<h3>Confused about ML Output<a class="headerlink" href="#confused-about-ml-output" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="goals-for-next-week">
+<h2>Goals for Next Week<a class="headerlink" href="#goals-for-next-week" title="Permalink to this heading">#</a></h2>
+<section id="implement-audio-classification">
+<h3>Implement audio classification<a class="headerlink" href="#implement-audio-classification" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 </section>
@@ -470,12 +507,21 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-procedure">Recording Procedure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recording-result">Recording Result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#challange">Challange</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress">Progress</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recording">Recording</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confused-about-ml-output">Confused about ML Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
 </ul>
 </li>
 </ul>
