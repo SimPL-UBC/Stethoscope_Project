@@ -2,8 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Stethoscope Project
-author: SimPL lab member
-logo: ./image/simpl_logo
+author: SimPL
+logo: ./image/simpl_logo.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
