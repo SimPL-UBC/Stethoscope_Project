@@ -7,3 +7,4 @@ parts:
   -caption: Weekly Report
   chapters:
   -file: may/090524_report.md
+  -file: markdown.md
