@@ -378,11 +378,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confused-about-ml-output">Confused about ML Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-about-ml-output">Confusion about ML Output</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-recognition-to-something-useful">Apply recognition to something useful</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-heartbeat">Detect heartbeat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-preprocessing-model">Learn preprocessing model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-out-next-prototype">Plan out next prototype</a></li>
 </ul>
 </li>
 </ul>
@@ -404,8 +408,9 @@ document.write(`
 <h3>Recording<a class="headerlink" href="#recording" title="Permalink to this heading">#</a></h3>
 <p>I’ve recorded 2 trial run when I was sleeping.
 Here are the images showing how the recording was taken.</p>
-<p><img alt="Sealing microphone" src="../_images/StetV00_Proc_1.jpg" /></p>
-<p><img alt="Stethoscope location" src="../_images/StetV00_Proc_2.jpg" /></p>
+<p><img alt="Sealing microphone" src="../_images/StetV00_Proc_1.jpg" />
+<img alt="Stethoscope location" src="../_images/StetV00_Proc_2.jpg" /></p>
+<p>Recording detail can be found on the <a class="reference external" href="https://github.com/SimPL-UBC/Stethoscope_Project">data folder</a> on github</p>
 </section>
 <section id="dataset">
 <h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h3>
@@ -427,27 +432,54 @@ Dataset List<div class="sd-summary-down docutils">
 </details></section>
 <section id="machine-learning-algorithm">
 <h3>Machine Learning Algorithm<a class="headerlink" href="#machine-learning-algorithm" title="Permalink to this heading">#</a></h3>
+<p>There is a need to preprocess our audio and then feed it into a classification model.
+For preprocessing, I am looking into librosa and TensorFlow or PyTorch can be used for machine learning model.</p>
 </section>
 <section id="problem-and-improvement">
 <h3>Problem and Improvement<a class="headerlink" href="#problem-and-improvement" title="Permalink to this heading">#</a></h3>
+<p>There are some thing I noticed when recording. The first data doesn’t pick up any heartbeat sound at all, it was because I used a weak tape.
+I also want to implement live hearing. Because currently, I need to turn off the recording to get a sample sound, which means shifting position of the stethoscope and I don’t know if this current position can detect heartbeat or not.</p>
 </section>
 </section>
 <section id="challenge">
 <h2>Challenge<a class="headerlink" href="#challenge" title="Permalink to this heading">#</a></h2>
 <section id="dataset-validation">
 <h3>Dataset Validation<a class="headerlink" href="#dataset-validation" title="Permalink to this heading">#</a></h3>
+<p>A lot of datasets are taken from the internet, not from physician or clinic. A lot of clinic doesn’t want to upload stethoscope recording because of privacy reasons.
+Hence, there will be a lot of bad data and we will need time filter out for good data.</p>
 </section>
 <section id="heartbeat-detection">
 <h3>Heartbeat detection<a class="headerlink" href="#heartbeat-detection" title="Permalink to this heading">#</a></h3>
+<p>For both test, heartbeat wasn’t detected. It was probably due to the placement of the stethoscope. I will try to adjust the position.</p>
 </section>
-<section id="confused-about-ml-output">
-<h3>Confused about ML Output<a class="headerlink" href="#confused-about-ml-output" title="Permalink to this heading">#</a></h3>
+<section id="confusion-about-ml-output">
+<h3>Confusion about ML Output<a class="headerlink" href="#confusion-about-ml-output" title="Permalink to this heading">#</a></h3>
+<p>A lot of research paper used ML to identify heart sound and some possible diseases.
+However, what do we want from our stethoscope? Is it beats per minute, healthy or abnormal sound, sleap apnea sound, etc.
+In short, I don’t know what we want our model to notify us with.</p>
 </section>
 </section>
 <section id="goals-for-next-week">
 <h2>Goals for Next Week<a class="headerlink" href="#goals-for-next-week" title="Permalink to this heading">#</a></h2>
 <section id="implement-audio-classification">
 <h3>Implement audio classification<a class="headerlink" href="#implement-audio-classification" title="Permalink to this heading">#</a></h3>
+<p>I want to implement audio classification, at least make it able to detect lung sound.</p>
+</section>
+<section id="apply-recognition-to-something-useful">
+<h3>Apply recognition to something useful<a class="headerlink" href="#apply-recognition-to-something-useful" title="Permalink to this heading">#</a></h3>
+<p>If we can detect certain breathing pattern for example, I want to use ML to detect if that is a healthy or unhealthy breathing pattern.</p>
+</section>
+<section id="detect-heartbeat">
+<h3>Detect heartbeat<a class="headerlink" href="#detect-heartbeat" title="Permalink to this heading">#</a></h3>
+<p>Get a recording with heartbeat detected.</p>
+</section>
+<section id="learn-preprocessing-model">
+<h3>Learn preprocessing model<a class="headerlink" href="#learn-preprocessing-model" title="Permalink to this heading">#</a></h3>
+<p>I just did a surface level search of preprocessed model, and I want to know what is the state of the art of audio preprocessing.</p>
+</section>
+<section id="plan-out-next-prototype">
+<h3>Plan out next prototype<a class="headerlink" href="#plan-out-next-prototype" title="Permalink to this heading">#</a></h3>
+<p>Decide on the use of microphone module and the component needed for it to work.</p>
 </section>
 </section>
 </section>
@@ -517,11 +549,15 @@ Dataset List<div class="sd-summary-down docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confused-about-ml-output">Confused about ML Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-about-ml-output">Confusion about ML Output</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-recognition-to-something-useful">Apply recognition to something useful</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-heartbeat">Detect heartbeat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-preprocessing-model">Learn preprocessing model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-out-next-prototype">Plan out next prototype</a></li>
 </ul>
 </li>
 </ul>
