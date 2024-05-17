@@ -6,4 +6,5 @@ root: intro
 parts:
   - caption: Weekly Report
     chapters:
-    - file: may/090524_report
+    - file: may/100524_report
+    - file: may/170524_report
