@@ -1,9 +1,9 @@
 \documentclass{article}
 \usepackage{fullpage}
-
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[scaled=1]{helvet}
 \usepackage[helvet]{sfmath}
+\usepackage{graphicx,amssymb}
 \everymath={\sf}
 
 \usepackage{parskip}
@@ -11,7 +11,9 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{multicol}
 \usepackage{float}
-
+\newcommand{\TeaserImage}[1]{\raisebox{%
+  .5\dimexpr-\height+\ht\strutbox-\dp\strutbox}{%
+  \includegraphics[width=0.29\textwidth]{#1}}}
 \title{Stethoscope Mold Making SOP}
 \author{Gyan Edbert Zesiro}
 %\company{The University of Western Ontario}
@@ -78,15 +80,23 @@ Here are the list of equipment you will need, note that someone will need to tra
     \item press start, and wait until it finish
     \item Once the defoaming process is done, it will beep. Take out the bottle and your mixed solution
     \item Check your solution, if it is mixed continue; else mix it again. Beware that mixing it for too long will produce heat which will make your mold too stiff (see \href{Mold_Tables}{Appendix})
-    \item Vacuum your solution until the rate of bubble formation is slow
+    \item Vacuum your solution until the rate of bubble formation is slow\\
+        \begin{centering}
+        $%\Teaser{
+    \TeaserImage{img/Vacuum_1.jpg}
+    \Rightarrow
+    \TeaserImage{img/Vacuum_2.jpg}
+    \Rightarrow
+    \TeaserImage{img/Vacuum_3.jpg}
+    $
+\end{centering}
+    \item While you wait for vacuum to finish, it is a good time to spray your mold with the non-stick spray, do this under the fume hood.
+    \item Once vacuum is done, take it out of the vacuum pump
     \item Fill your mold with the polymer solution
     \item Let it cure for a whole day (you can use oven to speed up the process if you want, some polymer can only cure in high temperature as well, again see manufacture data sheet to be sure)
     \item Clean up and tidy everything
+    \item Once it's cured, take it out of the mold
 \end{enumerate}
-\section{Testing}
-\subsection{Getting The Mold Out}
-\subsection{Visual Inspection}
-
 \section{Safety}
 \section{Appendix}
 \subsection{Mold Tables Important Property}\label{Mold_Tables}
