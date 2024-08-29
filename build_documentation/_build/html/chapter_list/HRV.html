@@ -1,0 +1,1175 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>HRV.m &#8212; Stethoscope Project</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_list/HRV';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="heart_murmur_vis.m" href="heart_murmur_vis.html" />
+    <link rel="prev" title="analysis.m" href="analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/simpl_logo.png" class="logo__image only-light" alt="Stethoscope Project - Home"/>
+    <script>document.write(`<img src="../_static/simpl_logo.png" class="logo__image only-dark" alt="Stethoscope Project - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="usb_recorder.html">USB Recorder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microphone_recorder.html">Microphone Recorder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mold_making.html">Mold Making</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware_misc.html">Hardware Miscellaneous</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Software</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">analysis.m</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">HRV.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heart_murmur_vis.html">heart_murmur_vis.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spectral_entropy.html">spectral_entropy.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_misc.html">Software Miscelaneous</a></li>
+<li class="toctree-l1"><a class="reference internal" href="count_heartbeat.html">count_heartbeat.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmf_comparison.html">nmf_comparison.m</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter_list/HRV.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapter_list/HRV.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HRV.m</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-file">Read File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks-detection">Peaks detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#envelope">Envelope</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hrv-time-domain-calculation">HRV Time Domain Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hrv-frequency-domain-calculation">HRV Frequency Domain Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-code">Full Code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hrv-m">
+<h1>HRV.m<a class="headerlink" href="#hrv-m" title="Permalink to this heading">#</a></h1>
+<p>HRV.m contains the Heart Rate Variability measurement. These file contains the peak detection algorithm,
+time domain HRV feature and the frequency domain HRV feature.</p>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this heading">#</a></h2>
+<section id="read-file">
+<h3>Read File<a class="headerlink" href="#read-file" title="Permalink to this heading">#</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">audioread</span><span class="p">(</span><span class="s">&#39;audio/240729_sleep_modified.wav&#39;</span><span class="p">);</span>
+<span class="n">downsampling_const</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">downsample</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">downsampling_const</span><span class="p">);</span>
+<span class="n">fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fs</span><span class="o">/</span><span class="n">downsampling_const</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="n">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">audio</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The code block aboves reads the specified file in audioread, and then perform
+these following operation:</p>
+<ul class="simple">
+<li><p>Downsample by <em>downsampling_const</em></p></li>
+<li><p>Average out both signal (is not relevant here, since our current microphone records mono)</p></li>
+<li><p>Normalize sample to make inspection easier</p></li>
+</ul>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this heading">#</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">max_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span>
+<span class="nb">time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">max_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span>
+
+<span class="n">cutoffFreq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+<span class="n">segmentTimeWindow</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">secondOverlap</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">timeVec</span><span class="p">,</span><span class="w"> </span><span class="n">filtered_audio</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">butterworthFilter</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">cutoffFreq</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">,</span><span class="w"> </span><span class="n">max_time</span><span class="p">);</span>
+<span class="n">filtered_audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">medfilt1</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">,</span><span class="mi">25</span><span class="p">);</span>
+<span class="n">filtered_audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">filtered_audio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The above block of code does two things, mainly creating the time vector
+for plotting and filter the audio.</p>
+<p>Filter is done by cutting off certain frequency, specified by <em>cutoffFreq</em> and the <em>butterworthFilter</em> function, change these variable as suitable.
+Median filtering is also done to remove transient peaks</p>
+</section>
+</section>
+<section id="peaks-detection">
+<h2>Peaks detection<a class="headerlink" href="#peaks-detection" title="Permalink to this heading">#</a></h2>
+<p>Peak detection works in three steps:</p>
+<ul class="simple">
+<li><p>Envelope of the whole function (using hilbert transform)</p></li>
+<li><p>Create a local maximum for peak detection amplitude threshold</p></li>
+<li><p>Peak detection loop</p></li>
+</ul>
+<p>After that the code calculates the BPM, as now we have all the data we need to calculate BPM</p>
+<section id="envelope">
+<h3>Envelope<a class="headerlink" href="#envelope" title="Permalink to this heading">#</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Detect peaks</span>
+<span class="n">envelope</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">));</span>
+<span class="n">edge_compensation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">envelope</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">envelope</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span><span class="o">-</span><span class="n">edge_compensation</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>These block of code makes an envelope function of your original signal (using hilbert transform).
+Notice the <em>edge_compensation</em>, this variable is used to account for the edge distortion of hilbert transform, see
+<a class="reference external" href="https://dsp.stackexchange.com/questions/76754/how-to-alleviate-the-edging-effect-of-the-hilbert-transform">this excellent explanation</a> for further explanation.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">local_amplitude_window</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">peak_window_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_amplitude_window</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span><span class="w"> </span>
+<span class="n">peak_step_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_amplitude_window</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span><span class="w"> </span><span class="c">%decided that no overlap is better</span>
+<span class="n">all_peaks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="n">all_locs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="n">num_peak_windows</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">floor</span><span class="p">((</span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">peak_window_size</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">peak_step_size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c">%loop</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_peak_windows</span>
+<span class="w">    </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">peak_step_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">peak_window_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span>
+<span class="w">        </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">);</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">envelope_window</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">envelope</span><span class="p">(</span><span class="n">peak_start_idx</span><span class="p">:</span><span class="n">peak_end_idx</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_max</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">envelope_window</span><span class="p">);</span>
+<span class="w">    </span><span class="p">[</span><span class="n">window_peaks</span><span class="p">,</span><span class="w"> </span><span class="n">window_locs</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">findpeaks</span><span class="p">(</span><span class="n">envelope_window</span><span class="p">,</span><span class="w"> </span><span class="n">MinPeakHeight</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_max</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">MinPeakDistance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">all_peaks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">all_peaks</span><span class="p">;</span><span class="w"> </span><span class="n">window_peaks</span><span class="p">];</span>
+<span class="w">    </span><span class="n">all_locs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">all_locs</span><span class="p">;</span><span class="w"> </span><span class="n">window_locs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>The block of code above initialize the vector (although one improvement you can do is to make a big vector with predefine size to speed up calculation)
+and create local amplitude for peak detection amplitude threshold. In long recording session, we can’t really rely on one max amplitude, which is why these algorithm was implemented.
+One thing I wanted to do was to make the local amplitude change, say if it doesn’t detect any peaks during for 2 seconds, you know we need to change the local amplitude.
+Right now the code uses a set amount of time defined in <em>local_amplitude_window</em>.</p>
+<p>The rest of the code from here is a simple bpm calculation and plotting</p>
+</section>
+</section>
+<section id="hrv-time-domain-calculation">
+<h2>HRV Time Domain Calculation<a class="headerlink" href="#hrv-time-domain-calculation" title="Permalink to this heading">#</a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">s1s1_intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">all_locs</span><span class="p">);</span>
+<span class="n">diff_s1s1_intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+<span class="n">mean_s1s1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+<span class="n">SD1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">var</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">SD2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">var</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">SD1</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">SDNN</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+
+<span class="n">NN50</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="o">/</span><span class="mi">1000</span><span class="p">);</span>
+<span class="n">pNN50</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">NN50</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="c">% Calculate RMSSD</span>
+<span class="n">RMSSD</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">mean</span><span class="p">(</span><span class="n">diff_s1s1_intervals</span><span class="w"> </span><span class="o">.^</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+
+<span class="c">% Calculate Triangular Index (Histogram Width)</span>
+<span class="p">[</span><span class="n">hist_counts</span><span class="p">,</span><span class="w"> </span><span class="n">hist_edges</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">histcounts</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BinWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c">% Adjust BinWidth as needed</span>
+<span class="n">Triangular_Index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">hist_counts</span><span class="p">);</span>
+
+<span class="c">% Calculate HRV Index</span>
+<span class="n">HRV_Index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">hist_counts</span><span class="p">);</span>
+
+<span class="c">% For poincare plot</span>
+<span class="c">% Calculate area of the ellipse S</span>
+<span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SD2</span><span class="p">;</span>
+
+<span class="c">% Calculate the ratio SD1/SD2</span>
+<span class="n">SD1_SD2_ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">SD2</span><span class="p">;</span>
+
+<span class="c">% Display results</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;SDNN: %.2f s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">SDNN</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;NN50: %d\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NN50</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;pNN50: %.2f%%\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pNN50</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;RMSSD: %.2f s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">RMSSD</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Triangular Index: %.2f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Triangular_Index</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;HRV Index: %.2f\n\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">HRV_Index</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This MATLAB script calculates several Heart Rate Variability (HRV) metrics from S1-S1 intervals
+(usually people use RR peak, an ecg measurement), which
+represent the time between successive S1 heart sounds. The script also generates several visualization including</p>
+<ul class="simple">
+<li><p>The time series plot of S1-S1 intervals</p></li>
+<li><p>Histogram of the interval distribution with a fitted normal curve</p></li>
+<li><p>Poincaré plot</p></li>
+</ul>
+<p>Then from S1-S1 you can basically calculate whatever metric you want.
+The hard part is actually the definition(ie. what does this metric even mean?), so here is the list of calculated metrics and their definition:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<table class="table" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">HRV Time Variable</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>S1-S1 Intervals (s1s1_intervals)</p></td>
+<td><p>The time differences between consecutive S1 heart sounds</p></td>
+</tr>
+<tr class="row-odd"><td><p>Difference in S1-S1 Intervals (diff_s1s1_intervals)</p></td>
+<td><p>The difference between consecutive S1-S1 intervals.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mean S1-S1 Interval (mean_s1s1)</p></td>
+<td><p>The average duration of the S1-S1 intervals</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standard Deviation 1 (SD1) (SD1)</p></td>
+<td><p>Reflects the short-term variability of the S1-S1 intervals</p></td>
+</tr>
+<tr class="row-even"><td><p>Standard Deviation 2 (SD2) (SD2)</p></td>
+<td><p>Reflects the long-term variability of the S1-S1 intervals</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standard Deviation of Normal-to-Normal Intervals (SDNN) (SDNN)</p></td>
+<td><p>A global HRV measure representing the overall variability</p></td>
+</tr>
+<tr class="row-even"><td><p>NN50 (NN50)</p></td>
+<td><p>The number of successive interval differences greater than 50 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>pNN50 (pNN50)</p></td>
+<td><p>The proportion of NN50 to the total number of intervals, expressed as a percentage</p></td>
+</tr>
+<tr class="row-even"><td><p>Root Mean Square of Successive Differences (RMSSD) (RMSSD)</p></td>
+<td><p>A measure of short-term HRV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Triangular Index (Triangular_Index)</p></td>
+<td><p>The total number of S1-S1 intervals divided by the height of the histogram’s peak</p></td>
+</tr>
+<tr class="row-even"><td><p>HRV Index (HRV_Index)</p></td>
+<td><p>A similar measure to the Triangular Index, representing the variability distribution</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Then the rest of the code is for plotting</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Time vector for S1-S1 intervals (you can create one if not available)</span>
+<span class="n">S1_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cumsum</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+
+<span class="c">% 1. Time Series Plot of S1-S1 Intervals</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">S1_time</span><span class="p">,</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-o&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Intervals (s)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Time Series of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+
+<span class="c">% Histogram with fitted normal distribution</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="n">histfit</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">);</span><span class="w"> </span><span class="c">% Convert to milliseconds for display</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Intervals (ms)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Distribution of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Histogram&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Fitted Normal Distribution&#39;</span><span class="p">)</span>
+<span class="nb">grid</span><span class="w"> </span><span class="n">on</span>
+
+
+<span class="n">time_color</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">S1_time</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">S1_time</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">mean_s1s1</span><span class="p">,</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span><span class="o">-</span><span class="n">mean_s1s1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">time_color</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;filled&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Interval (n) (s)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Interval (n+1) (s)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Poincare Plot&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="n">cbar</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">colorbar</span><span class="p">;</span>
+<span class="nb">colormap</span><span class="p">(</span><span class="nb">parula</span><span class="p">);</span>
+<span class="nb">caxis</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">time_color</span><span class="p">),</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">time_color</span><span class="p">)]);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="n">cbar</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+
+<span class="c">% Ellipse fitting for Poincare Plot</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="n">theta_angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">atan2</span><span class="p">(</span><span class="n">SD2</span><span class="p">,</span><span class="w"> </span><span class="n">SD2</span><span class="p">);</span>
+<span class="n">ellipse_x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">ellipse_y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">R</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">);</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">)];</span>
+<span class="n">ellipse_coords</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">ellipse_x</span><span class="p">;</span><span class="w"> </span><span class="n">ellipse_y</span><span class="p">];</span>
+<span class="c">% ellipse_coords = [ellipse_x&#39;; ellipse_y&#39;];</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">ellipse_coords</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="w"> </span><span class="n">ellipse_coords</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">show_std_diff</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD1</span><span class="p">,</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD1</span><span class="p">]);</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="o">-</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD2</span><span class="p">,</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD2</span><span class="p">]);</span>
+<span class="c">% Add arrows for SD1 and SD2</span>
+<span class="n">line_length</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD1</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD1</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c">% SD1 line</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD1</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD1</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c">% SD1 opposite line</span>
+
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD2</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c">% SD2 line</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD2</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c">% SD2 opposite line</span>
+
+<span class="c">% Add lines for SD1 and SD2</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;S1-S1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;95% interval&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SD1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SD2&#39;</span><span class="p">)</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="hrv-frequency-domain-calculation">
+<h2>HRV Frequency Domain Calculation<a class="headerlink" href="#hrv-frequency-domain-calculation" title="Permalink to this heading">#</a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c">% Sampling frequency for pwelch</span>
+
+<span class="c">% Create a time vector for interpolation</span>
+<span class="n">time_vector</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">all_locs</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">:</span><span class="n">all_locs</span><span class="p">(</span><span class="k">end</span><span class="p">);</span>
+
+<span class="c">% Perform cubic spline interpolation to resample the S1_S1 intervals</span>
+<span class="n">s1s1_interpolated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">interp1</span><span class="p">(</span><span class="n">all_locs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">,</span><span class="w"> </span><span class="n">time_vector</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;spline&#39;</span><span class="p">);</span>
+
+<span class="c">% Detrend the signal (optional)</span>
+<span class="n">s1s1_detrended</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">detrend</span><span class="p">(</span><span class="n">s1s1_interpolated</span><span class="p">);</span>
+
+<span class="p">[</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">pwelch</span><span class="p">(</span><span class="n">s1s1_detrended</span><span class="p">,</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="n">Fs</span><span class="p">);</span>
+
+<span class="c">% Define the frequency bands</span>
+<span class="n">VLF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0033</span><span class="w"> </span><span class="mf">0.04</span><span class="p">];</span><span class="w"> </span><span class="c">% VLF band (0.0033-0.04 Hz)</span>
+<span class="n">LF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.04</span><span class="w"> </span><span class="mf">0.15</span><span class="p">];</span><span class="w">    </span><span class="c">% LF band (0.04-0.15 Hz)</span>
+<span class="n">HF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.15</span><span class="w"> </span><span class="mf">0.4</span><span class="p">];</span><span class="w">     </span><span class="c">% HF band (0.15-0.4 Hz)</span>
+
+<span class="c">% Calculate the power in each band using the bandpower function</span>
+<span class="n">VLF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+<span class="n">LF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">LF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+<span class="n">HF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">HF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Finally it’s the frequency domain calculation.
+For frequency domain, we mainly look at 3 band:</p>
+<ol class="arabic simple">
+<li><p>Very Low Frequency (VLF): 0.0033 to 0.04 Hz</p></li>
+<li><p>Low Frequency (LF): 0.04 to 0.15 Hz</p></li>
+<li><p>High Frequency (HF): 0.15 to 0.4 Hz
+As a brief summary of each component, here is what each frequency band tries to quantify:</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Term</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VLF</p></td>
+<td><p>Reflects slow regulatory mechanisms, possibly related to sympathetic activity, but its interpretation is complex</p></td>
+</tr>
+<tr class="row-odd"><td><p>LF</p></td>
+<td><p>Reflects a combination of sympathetic and parasympathetic influences</p></td>
+</tr>
+<tr class="row-even"><td><p>HF</p></td>
+<td><p>Reflects parasympathetic activity, closely tied to respiratory influences</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the literature, people actually isn’t sure about the legitimacy of VLF, but I included it in the code for completion sake anyway.
+The rest of the code is just plotting</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Plot the PSD in s²/Hz</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% Plot in linear scale with black line</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (Hz)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Power/Frequency (s^2/Hz)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Power Spectral Density of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+
+<span class="c">% Shade VLF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="c">% Shade LF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="c">% Shade HF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;PSD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;VLF Band&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LF Band&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;HF Band&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="w"> </span><span class="mf">0.5</span><span class="p">])</span>
+<span class="c">% Print the band powers</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;VLF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">VLF_power</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;LF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LF_power</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;HF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">HF_power</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Congratulations, this is the most jam packed matlab script in this project, thanks for reading this :D</p>
+</section>
+<section id="full-code">
+<h2>Full Code<a class="headerlink" href="#full-code" title="Permalink to this heading">#</a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span>
+<span class="p">[</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">audioread</span><span class="p">(</span><span class="s">&#39;audio/240729_sleep_modified.wav&#39;</span><span class="p">);</span>
+<span class="n">downsampling_const</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">downsample</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">downsampling_const</span><span class="p">);</span>
+<span class="n">fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fs</span><span class="o">/</span><span class="n">downsampling_const</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="n">max_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span>
+<span class="nb">time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">max_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span>
+
+<span class="n">cutoffFreq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+<span class="n">segmentTimeWindow</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="n">secondOverlap</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">timeVec</span><span class="p">,</span><span class="w"> </span><span class="n">filtered_audio</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">butterworthFilter</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span><span class="w"> </span><span class="n">cutoffFreq</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">,</span><span class="w"> </span><span class="n">max_time</span><span class="p">);</span>
+<span class="n">filtered_audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">medfilt1</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">,</span><span class="mi">25</span><span class="p">);</span>
+<span class="n">filtered_audio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">filtered_audio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">));</span>
+
+<span class="c">% Detect peaks</span>
+<span class="n">envelope</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="n">filtered_audio</span><span class="p">));</span>
+<span class="n">edge_compensation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">envelope</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">envelope</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span><span class="o">-</span><span class="n">edge_compensation</span><span class="p">);</span>
+
+<span class="n">local_amplitude_window</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">peak_window_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_amplitude_window</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span><span class="w"> </span>
+<span class="n">peak_step_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_amplitude_window</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span><span class="w"> </span><span class="c">%decided that no overlap is better</span>
+<span class="n">all_peaks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="n">all_locs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="n">num_peak_windows</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">floor</span><span class="p">((</span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">peak_window_size</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">peak_step_size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+
+<span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_peak_windows</span>
+<span class="w">    </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">peak_step_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">peak_window_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">)</span>
+<span class="w">        </span><span class="n">peak_end_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">envelope</span><span class="p">);</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">envelope_window</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">envelope</span><span class="p">(</span><span class="n">peak_start_idx</span><span class="p">:</span><span class="n">peak_end_idx</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_max</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">envelope_window</span><span class="p">);</span>
+<span class="w">    </span><span class="p">[</span><span class="n">window_peaks</span><span class="p">,</span><span class="w"> </span><span class="n">window_locs</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">findpeaks</span><span class="p">(</span><span class="n">envelope_window</span><span class="p">,</span><span class="w"> </span><span class="n">MinPeakHeight</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">local_max</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">MinPeakDistance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">all_peaks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">all_peaks</span><span class="p">;</span><span class="w"> </span><span class="n">window_peaks</span><span class="p">];</span>
+<span class="w">    </span><span class="n">all_locs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">all_locs</span><span class="p">;</span><span class="w"> </span><span class="n">window_locs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">peak_start_idx</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="k">end</span>
+
+<span class="n">window_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span><span class="w"> </span>
+<span class="n">step_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span>
+<span class="n">num_windows</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">floor</span><span class="p">((</span><span class="nb">length</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">window_size</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">step_size</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">time_stamps</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">num_windows</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">bpm_values</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">num_windows</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_windows</span>
+<span class="w">    </span><span class="n">start_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">step_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">end_idx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">start_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">window_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">window_peaks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">all_locs</span><span class="p">(</span><span class="n">all_locs</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">start_idx</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">all_locs</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">end_idx</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">window_peaks</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="n">intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">window_peaks</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span>
+<span class="w">        </span><span class="n">avg_interval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">intervals</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bpm_values</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">avg_interval</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">bpm_values</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">NaN</span><span class="p">;</span><span class="w"> </span><span class="c">% Not enough peaks to calculate BPM</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">time_stamps</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">start_idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">end_idx</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fs</span><span class="p">);</span><span class="w"> </span><span class="c">% Midpoint of the window</span>
+<span class="k">end</span>
+
+<span class="c">%fig to check whether algorithm works or not</span>
+<span class="n">all_locs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">all_locs</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span>
+<span class="c">% Plot</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">time_stamps</span><span class="p">,</span><span class="w"> </span><span class="n">bpm_values</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-o&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (seconds)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;BPM&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Time vs Heartbeat Per Minute&#39;</span><span class="p">);</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="mi">40</span><span class="w"> </span><span class="mi">160</span><span class="p">])</span>
+<span class="nb">zoom</span><span class="w"> </span><span class="n">xon</span>
+<span class="c">% xlim([0 300])</span>
+<span class="nb">grid</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="c">% xlim([0,120])</span>
+<span class="c">% ylim([40, 80])</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="nb">plot</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">audio</span><span class="p">)</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (seconds&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">])</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">zoom</span><span class="w"> </span><span class="n">xon</span>
+<span class="c">% plot(,filtered_audio)</span>
+
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Heartbeat per minute: %.2f BPM\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">bpm_values</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;omitnan&#39;</span><span class="p">));</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">audio</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Original Audio&#39;</span><span class="p">);</span>
+<span class="n">zoom</span><span class="w"> </span><span class="s">xon</span>
+<span class="c">% xlim([320 440])</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">timeVec</span><span class="p">,</span><span class="w"> </span><span class="n">filtered_audio</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Filtered Audio&#39;</span><span class="p">);</span>
+<span class="c">% xlim([320 440])</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">timeVec</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">timeVec</span><span class="p">)</span><span class="o">-</span><span class="n">edge_compensation</span><span class="p">),</span><span class="w"> </span><span class="n">envelope</span><span class="p">);</span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">all_locs</span><span class="p">,</span><span class="w"> </span><span class="n">all_peaks</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;ro&#39;</span><span class="p">);</span>
+<span class="n">zoom</span><span class="w"> </span><span class="s">xon</span>
+<span class="c">% xlim([0 120])</span>
+<span class="c">% xlim([320 440])</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Envelope with Detected Peaks&#39;</span><span class="p">);</span>
+
+<span class="k">function</span><span class="w"> </span><span class="nf">[timeVec, filteredSound] = butterworthFilter</span><span class="p">(</span>audioVec, cutoffFreq, originalFs, max_time<span class="p">)</span>
+<span class="w">    </span><span class="c">% Parameters:</span>
+<span class="w">    </span><span class="c">% audioVec           - Input audio vector</span>
+<span class="w">    </span><span class="c">% cutoffFreq         - Cutoff frequency for low-pass filter</span>
+<span class="w">    </span><span class="c">% downsamplingConst  - Downsampling factor</span>
+<span class="w">    </span><span class="c">% segmentTimeWindow  - Length of each segment time window in seconds</span>
+<span class="w">    </span><span class="c">% secondOverlap      - Overlap time in seconds</span>
+
+<span class="w">    </span><span class="c">% Sampling frequency of the original signal (assumed)</span>
+<span class="w">    </span><span class="c">% New sampling frequency after downsampling</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Design the Butterworth filter</span>
+<span class="w">    </span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">butter</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">cutoffFreq</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">originalFs</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;low&#39;</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Apply the Butterworth filter</span>
+<span class="w">    </span><span class="n">filteredSound</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">audioVec</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;filtered sound size: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">mat2str</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">filteredSound</span><span class="p">)));</span>
+<span class="w">    </span><span class="c">% Downsample the filtered signal</span>
+<span class="w">    </span><span class="n">timeVec</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">max_time</span><span class="p">,</span><span class="n">originalFs</span><span class="o">*</span><span class="n">max_time</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="c">%% </span>
+<span class="n">s1s1_intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">all_locs</span><span class="p">);</span>
+<span class="n">diff_s1s1_intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+<span class="n">mean_s1s1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+<span class="n">SD1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">var</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">SD2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">var</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">SD1</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">SDNN</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+
+<span class="n">NN50</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">diff_s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="o">/</span><span class="mi">1000</span><span class="p">);</span>
+<span class="n">pNN50</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">NN50</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="c">% Calculate RMSSD</span>
+<span class="n">RMSSD</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">mean</span><span class="p">(</span><span class="n">diff_s1s1_intervals</span><span class="w"> </span><span class="o">.^</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+
+<span class="c">% Calculate Triangular Index (Histogram Width)</span>
+<span class="p">[</span><span class="n">hist_counts</span><span class="p">,</span><span class="w"> </span><span class="n">hist_edges</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">histcounts</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;BinWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c">% Adjust BinWidth as needed</span>
+<span class="n">Triangular_Index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">hist_counts</span><span class="p">);</span>
+
+<span class="c">% Calculate HRV Index</span>
+<span class="n">HRV_Index</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">hist_counts</span><span class="p">);</span>
+
+<span class="c">% For poincare plot</span>
+<span class="c">% Calculate area of the ellipse S</span>
+<span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SD2</span><span class="p">;</span>
+
+<span class="c">% Calculate the ratio SD1/SD2</span>
+<span class="n">SD1_SD2_ratio</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">SD2</span><span class="p">;</span>
+
+<span class="c">% Display results</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;SDNN: %.2f s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">SDNN</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;NN50: %d\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">NN50</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;pNN50: %.2f%%\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pNN50</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;RMSSD: %.2f s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">RMSSD</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Triangular Index: %.2f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Triangular_Index</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;HRV Index: %.2f\n\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">HRV_Index</span><span class="p">);</span>
+
+<span class="c">% Time vector for S1-S1 intervals (you can create one if not available)</span>
+<span class="n">S1_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cumsum</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">);</span>
+
+<span class="c">% 1. Time Series Plot of S1-S1 Intervals</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">S1_time</span><span class="p">,</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;-o&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Intervals (s)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Time Series of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+
+<span class="c">% Histogram with fitted normal distribution</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="n">histfit</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">);</span><span class="w"> </span><span class="c">% Convert to milliseconds for display</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Intervals (ms)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Distribution of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Histogram&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Fitted Normal Distribution&#39;</span><span class="p">)</span>
+<span class="nb">grid</span><span class="w"> </span><span class="n">on</span>
+
+
+<span class="n">time_color</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">S1_time</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">S1_time</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)),</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">scatter</span><span class="p">(</span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">mean_s1s1</span><span class="p">,</span><span class="w"> </span><span class="n">s1s1_intervals</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="k">end</span><span class="p">)</span><span class="o">-</span><span class="n">mean_s1s1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">time_color</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;filled&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Interval (n) (s)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;S1-S1 Interval (n+1) (s)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Poincare Plot&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="n">cbar</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">colorbar</span><span class="p">;</span>
+<span class="nb">colormap</span><span class="p">(</span><span class="nb">parula</span><span class="p">);</span>
+<span class="nb">caxis</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">time_color</span><span class="p">),</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">time_color</span><span class="p">)]);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="n">cbar</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+
+<span class="c">% SD2 = 1;</span>
+<span class="c">% SD1 = 2;</span>
+<span class="c">% Ellipse fitting for Poincare Plot</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="n">theta_angle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">atan2</span><span class="p">(</span><span class="n">SD2</span><span class="p">,</span><span class="w"> </span><span class="n">SD2</span><span class="p">);</span>
+<span class="n">ellipse_x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">ellipse_y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SD2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">);</span>
+<span class="n">R</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">);</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">)];</span>
+<span class="n">ellipse_coords</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="n">ellipse_x</span><span class="p">;</span><span class="w"> </span><span class="n">ellipse_y</span><span class="p">];</span>
+<span class="c">% ellipse_coords = [ellipse_x&#39;; ellipse_y&#39;];</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">ellipse_coords</span><span class="p">(</span><span class="mi">1</span><span class="p">,:),</span><span class="w"> </span><span class="n">ellipse_coords</span><span class="p">(</span><span class="mi">2</span><span class="p">,:),</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">show_std_diff</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD1</span><span class="p">,</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD1</span><span class="p">]);</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="o">-</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD2</span><span class="p">,</span><span class="w"> </span><span class="n">show_std_diff</span><span class="o">*</span><span class="n">SD2</span><span class="p">]);</span>
+<span class="c">% Add arrows for SD1 and SD2</span>
+<span class="n">line_length</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD1</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD1</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c">% SD1 line</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD1</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD1</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c">% SD1 opposite line</span>
+
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD2</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*</span><span class="n">SD2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c">% SD2 line</span>
+<span class="nb">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD2</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">line_length</span><span class="o">*-</span><span class="n">SD2</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">theta_angle</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LineWidth</span><span class="p">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MaxHeadSize</span><span class="p">=</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c">% SD2 opposite line</span>
+
+<span class="c">% Add lines for SD1 and SD2</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;S1-S1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;95% interval&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SD1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SD2&#39;</span><span class="p">)</span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
+<span class="c">%%</span>
+<span class="n">S1_S1_intervals</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">diff</span><span class="p">(</span><span class="n">all_locs</span><span class="p">);</span><span class="w"> </span><span class="c">% Calculate the differences between consecutive peaks</span>
+<span class="c">% Define the desired sampling frequency (in Hz)</span>
+<span class="n">Fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c">% This is a common choice, but you can adjust as needed</span>
+
+<span class="c">% Create a time vector for interpolation</span>
+<span class="n">time_vector</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">all_locs</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">:</span><span class="n">all_locs</span><span class="p">(</span><span class="k">end</span><span class="p">);</span>
+
+<span class="c">% Perform cubic spline interpolation to resample the S1_S1 intervals</span>
+<span class="n">S1_S1_interpolated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">interp1</span><span class="p">(</span><span class="n">all_locs</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">S1_S1_intervals</span><span class="p">,</span><span class="w"> </span><span class="n">time_vector</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;spline&#39;</span><span class="p">);</span>
+
+<span class="c">% Detrend the signal (optional)</span>
+<span class="n">S1_S1_detrended</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">detrend</span><span class="p">(</span><span class="n">S1_S1_interpolated</span><span class="p">);</span>
+
+<span class="p">[</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">pwelch</span><span class="p">(</span><span class="n">S1_S1_detrended</span><span class="p">,</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="n">Fs</span><span class="p">);</span>
+
+<span class="c">% Define the frequency bands</span>
+<span class="n">VLF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0033</span><span class="w"> </span><span class="mf">0.04</span><span class="p">];</span><span class="w"> </span><span class="c">% VLF band (0.0033-0.04 Hz)</span>
+<span class="n">LF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.04</span><span class="w"> </span><span class="mf">0.15</span><span class="p">];</span><span class="w">    </span><span class="c">% LF band (0.04-0.15 Hz)</span>
+<span class="n">HF_band</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0.15</span><span class="w"> </span><span class="mf">0.4</span><span class="p">];</span><span class="w">     </span><span class="c">% HF band (0.15-0.4 Hz)</span>
+
+<span class="c">% Calculate the power in each band using the bandpower function</span>
+<span class="n">VLF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+<span class="n">LF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">LF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+<span class="n">HF_power</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bandpower</span><span class="p">(</span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">HF_band</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;psd&#39;</span><span class="p">);</span>
+
+<span class="c">% Plot the PSD in s²/Hz</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">PSD</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% Plot in linear scale with black line</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (Hz)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Power/Frequency (s^2/Hz)&#39;</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Power Spectral Density of S1-S1 Intervals&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+
+<span class="c">% Shade VLF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">VLF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="c">% Shade LF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">LF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="c">% Shade HF band under the curve</span>
+<span class="nb">area</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="n">PSD</span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">HF_band</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="s">&#39;FaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;FaceAlpha&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;PSD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;VLF Band&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LF Band&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;HF Band&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="w"> </span><span class="mf">0.5</span><span class="p">])</span>
+<span class="c">% Print the band powers</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;VLF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">VLF_power</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;LF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">LF_power</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;HF Power: %f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">HF_power</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapter_list"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">analysis.m</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="heart_murmur_vis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">heart_murmur_vis.m</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-file">Read File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peaks-detection">Peaks detection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#envelope">Envelope</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hrv-time-domain-calculation">HRV Time Domain Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hrv-frequency-domain-calculation">HRV Frequency Domain Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-code">Full Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SimPL
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
