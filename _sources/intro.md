@@ -1,6 +1,6 @@
-# Weekly Meeting Report
+# Introduction
 
-This folder contains more detailed note on weekly progress
+This pages contains the index of resources for the wearable stethoscope project
 
 ```{tableofcontents}
 ```

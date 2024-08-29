@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>09/05/24 Weekly Report &#8212; Stethoscope Project</title>
+    <title>spectral_entropy.m &#8212; Stethoscope Project</title>
   
   
   
@@ -58,10 +58,13 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'may/090524_report';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_list/spectral_entropy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Weekly Meeting Report" href="../intro.html" />
+    <link rel="next" title="statistical_analysis.m" href="statistical_analysis.html" />
+    <link rel="prev" title="heart_murmur_vis.m" href="heart_murmur_vis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -145,8 +148,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/simpl_logo.png" class="logo__image only-light" alt="Stethoscope Project - Home"/>
+    <script>document.write(`<img src="../_static/simpl_logo.png" class="logo__image only-dark" alt="Stethoscope Project - Home"/>`);</script>
   
-    <p class="title logo__title">Stethoscope Project</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -166,13 +175,27 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Weekly Meeting Report
+                    Introduction
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Weekly Report</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Hardware</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="usb_recorder.html">USB Recorder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="microphone_recorder.html">Microphone Recorder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mold_making.html">Mold Making</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware_misc.html">Hardware Miscellaneous</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Software</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">09/05/24 Weekly Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">analysis.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HRV.html">HRV.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="heart_murmur_vis.html">heart_murmur_vis.m</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">spectral_entropy.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistical_analysis.html">statistical_analysis.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="count_heartbeat.html">count_heartbeat.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmf_comparison.html">nmf_comparison.m</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software_misc.html">Software Miscelaneous</a></li>
 </ul>
 
     </div>
@@ -244,7 +267,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmay/090524_report.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter_list/spectral_entropy.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -274,7 +297,7 @@
       
       
       
-      <li><a href="../_sources/may/090524_report.md" target="_blank"
+      <li><a href="../_sources/chapter_list/spectral_entropy.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -358,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>09/05/24 Weekly Report</h1>
+    <h1>spectral_entropy.m</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -368,27 +391,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress">Progress</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recording">Recording</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-about-ml-output">Confusion about ML Output</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-recognition-to-something-useful">Apply recognition to something useful</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-heartbeat">Detect heartbeat</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-preprocessing-model">Learn preprocessing model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-out-next-prototype">Plan out next prototype</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-code">Full Code</a></li>
 </ul>
             </nav>
         </div>
@@ -400,87 +403,72 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="weekly-report">
-<h1>09/05/24 Weekly Report<a class="headerlink" href="#weekly-report" title="Permalink to this heading">#</a></h1>
-<section id="progress">
-<h2>Progress<a class="headerlink" href="#progress" title="Permalink to this heading">#</a></h2>
-<section id="recording">
-<h3>Recording<a class="headerlink" href="#recording" title="Permalink to this heading">#</a></h3>
-<p>I’ve recorded 2 trial run when I was sleeping.
-Here are the images showing how the recording was taken.</p>
-<p><img alt="Sealing microphone" src="../_images/StetV00_Proc_1.jpg" />
-<img alt="Stethoscope location" src="../_images/StetV00_Proc_2.jpg" /></p>
-<p>Recording detail can be found on the <a class="reference external" href="https://github.com/SimPL-UBC/Stethoscope_Project">data folder</a> on github</p>
-</section>
-<section id="dataset">
-<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this heading">#</a></h3>
-<p>Below are some datasets I found online that uses microphone or stethoscope as a recording device.
-Some of them are annotated and verified by expert, and even used in research paper.</p>
-<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
-<summary class="sd-summary-title sd-card-header">
-Dataset List<div class="sd-summary-down docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="sd-summary-up docutils">
-<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text"><a class="reference external" href="https://paperswithcode.com/dataset/icbhi-respiratory-sound-database">ICBHI</a><br />
-<a class="reference external" href="https://gitlab.com/techsupportHF/HF_Lung_V1">HF Lung V1</a><br />
-<a class="reference external" href="https://data.mendeley.com/datasets/jwyy9np4gv/3">Fraiwan Data</a><br />
-<a class="reference external" href="https://www.covid-19-sounds.org/en/blog/neurips_dataset.html#:~:text=To%20the%20best%20of%20our,%2C%20cough%2C%20and%20voice%20recordings.">Covid-19 Sounds</a><br />
-<a class="reference external" href="https://www.kaggle.com/datasets/vbookshelf/respiratory-sound-database/data">Kaggle, example</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="spectral-entropy-m">
+<h1>spectral_entropy.m<a class="headerlink" href="#spectral-entropy-m" title="Permalink to this heading">#</a></h1>
+<p>This script calculates the spectral entropy of the signal, by using the definition of spectral entropy,
+which is given by the math equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-label">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-label" title="Permalink to this equation">#</a></span>\[H = - \Sigma_{i=1}^{N}P_i \log_2{P_i}\]</div>
+<p>That is actually the shannon entropy, I can’t explain it here in the documentation, but there is
+an excellent youtube video about this, <a class="reference external" href="https://www.youtube.com/watch?v=0GCGaw0QOhA">linked here</a>.</p>
+<p>Basically, we use the power spectral density, as it can be used to represent probability function
+(which makes sense, higher magnitude means you have more chance of seeing that specific frequency)</p>
+<p>the main block of code you need to focus is here</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">nfft</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">leftChannel</span><span class="p">);</span><span class="w">     </span><span class="c">% Length of FFT</span>
+<span class="n">Px</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">leftChannel</span><span class="p">,</span><span class="w"> </span><span class="n">nfft</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c">% Power of each frequency component</span>
+<span class="n">Px</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Px</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c">% Remember FFT is symmetric</span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span><span class="p">;</span><span class="w"> </span><span class="c">% Frequency vector</span>
+
+<span class="c">% Step 2: Normalize the PSD to get a probability distribution</span>
+<span class="n">Px_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Px</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">Px</span><span class="p">);</span><span class="w"> </span><span class="c">% Normalize the power</span>
+
+<span class="c">% Step 3: Compute the spectral entropy</span>
+<span class="n">spec_entropy_x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">Px_norm</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="nb">log2</span><span class="p">(</span><span class="n">Px_norm</span><span class="p">));</span><span class="w"> </span><span class="c">% Entropy</span>
+</pre></div>
 </div>
-</details></section>
-<section id="machine-learning-algorithm">
-<h3>Machine Learning Algorithm<a class="headerlink" href="#machine-learning-algorithm" title="Permalink to this heading">#</a></h3>
-<p>There is a need to preprocess our audio and then feed it into a classification model.
-For preprocessing, I am looking into librosa and TensorFlow or PyTorch can be used for machine learning model.</p>
-</section>
-<section id="problem-and-improvement">
-<h3>Problem and Improvement<a class="headerlink" href="#problem-and-improvement" title="Permalink to this heading">#</a></h3>
-<p>There are some thing I noticed when recording. The first data doesn’t pick up any heartbeat sound at all, it was because I used a weak tape.
-I also want to implement live hearing. Because currently, I need to turn off the recording to get a sample sound, which means shifting position of the stethoscope and I don’t know if this current position can detect heartbeat or not.</p>
-</section>
-</section>
-<section id="challenge">
-<h2>Challenge<a class="headerlink" href="#challenge" title="Permalink to this heading">#</a></h2>
-<section id="dataset-validation">
-<h3>Dataset Validation<a class="headerlink" href="#dataset-validation" title="Permalink to this heading">#</a></h3>
-<p>A lot of datasets are taken from the internet, not from physician or clinic. A lot of clinic doesn’t want to upload stethoscope recording because of privacy reasons.
-Hence, there will be a lot of bad data and we will need time filter out for good data.</p>
-</section>
-<section id="heartbeat-detection">
-<h3>Heartbeat detection<a class="headerlink" href="#heartbeat-detection" title="Permalink to this heading">#</a></h3>
-<p>For both test, heartbeat wasn’t detected. It was probably due to the placement of the stethoscope. I will try to adjust the position.</p>
-</section>
-<section id="confusion-about-ml-output">
-<h3>Confusion about ML Output<a class="headerlink" href="#confusion-about-ml-output" title="Permalink to this heading">#</a></h3>
-<p>A lot of research paper used ML to identify heart sound and some possible diseases.
-However, what do we want from our stethoscope? Is it beats per minute, healthy or abnormal sound, sleap apnea sound, etc.
-In short, I don’t know what we want our model to notify us with.</p>
-</section>
-</section>
-<section id="goals-for-next-week">
-<h2>Goals for Next Week<a class="headerlink" href="#goals-for-next-week" title="Permalink to this heading">#</a></h2>
-<section id="implement-audio-classification">
-<h3>Implement audio classification<a class="headerlink" href="#implement-audio-classification" title="Permalink to this heading">#</a></h3>
-<p>I want to implement audio classification, at least make it able to detect lung sound.</p>
-</section>
-<section id="apply-recognition-to-something-useful">
-<h3>Apply recognition to something useful<a class="headerlink" href="#apply-recognition-to-something-useful" title="Permalink to this heading">#</a></h3>
-<p>If we can detect certain breathing pattern for example, I want to use ML to detect if that is a healthy or unhealthy breathing pattern.</p>
-</section>
-<section id="detect-heartbeat">
-<h3>Detect heartbeat<a class="headerlink" href="#detect-heartbeat" title="Permalink to this heading">#</a></h3>
-<p>Get a recording with heartbeat detected.</p>
-</section>
-<section id="learn-preprocessing-model">
-<h3>Learn preprocessing model<a class="headerlink" href="#learn-preprocessing-model" title="Permalink to this heading">#</a></h3>
-<p>I just did a surface level search of preprocessed model, and I want to know what is the state of the art of audio preprocessing.</p>
-</section>
-<section id="plan-out-next-prototype">
-<h3>Plan out next prototype<a class="headerlink" href="#plan-out-next-prototype" title="Permalink to this heading">#</a></h3>
-<p>Decide on the use of microphone module and the component needed for it to work.</p>
-</section>
+<section id="full-code">
+<h2>Full Code<a class="headerlink" href="#full-code" title="Permalink to this heading">#</a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">filename</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;audio/15min_HB.wav&quot;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">audioread</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+<span class="n">data</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="mi">70</span><span class="o">*</span><span class="n">fs</span><span class="p">:</span><span class="mi">110</span><span class="o">*</span><span class="n">fs</span><span class="p">,:);</span>
+<span class="n">leftChannel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">rightChannel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">data</span><span class="p">(:,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">t_wave</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">leftChannel</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fs</span><span class="p">;</span>
+
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">t_wave</span><span class="p">,</span><span class="w"> </span><span class="n">leftChannel</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Left Channel Waveform&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Amplitude&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+
+<span class="n">nfft</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">leftChannel</span><span class="p">);</span><span class="w">     </span><span class="c">% Length of FFT</span>
+<span class="n">Px</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">leftChannel</span><span class="p">,</span><span class="w"> </span><span class="n">nfft</span><span class="p">))</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c">% Power of each frequency component</span>
+<span class="n">Px</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Px</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c">% Remember FFT is symmetric</span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">nfft</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nfft</span><span class="p">;</span><span class="w"> </span><span class="c">% Frequency vector</span>
+
+<span class="c">% Step 2: Normalize the PSD to get a probability distribution</span>
+<span class="n">Px_norm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Px</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">Px</span><span class="p">);</span><span class="w"> </span><span class="c">% Normalize the power</span>
+
+<span class="c">% Step 3: Compute the spectral entropy</span>
+<span class="n">spec_entropy_x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="nb">sum</span><span class="p">(</span><span class="n">Px_norm</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="nb">log2</span><span class="p">(</span><span class="n">Px_norm</span><span class="p">));</span><span class="w"> </span><span class="c">% Entropy</span>
+
+<span class="c">% Display the result</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Spectral Entropy: %f bits\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">spec_entropy_x</span><span class="p">);</span>
+
+<span class="c">% Plot the original PSD</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">Px</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Power Spectral Density (PSD)&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (Hz)&#39;</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Power&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="w"> </span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -497,7 +485,7 @@ In short, I don’t know what we want our model to notify us with.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./may"
+            path: "./chapter_list"
         },
         predefinedOutput: true
     }
@@ -515,13 +503,22 @@ In short, I don’t know what we want our model to notify us with.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="heart_murmur_vis.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Weekly Meeting Report</p>
+        <p class="prev-next-title">heart_murmur_vis.m</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="statistical_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">statistical_analysis.m</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -539,27 +536,7 @@ In short, I don’t know what we want our model to notify us with.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#progress">Progress</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recording">Recording</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-algorithm">Machine Learning Algorithm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-and-improvement">Problem and Improvement</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-validation">Dataset Validation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heartbeat-detection">Heartbeat detection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-about-ml-output">Confusion about ML Output</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-for-next-week">Goals for Next Week</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-audio-classification">Implement audio classification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-recognition-to-something-useful">Apply recognition to something useful</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detect-heartbeat">Detect heartbeat</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-preprocessing-model">Learn preprocessing model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-out-next-prototype">Plan out next prototype</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-code">Full Code</a></li>
 </ul>
   </nav></div>
 
