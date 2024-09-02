@@ -7,7 +7,6 @@ parts:
     chapters:
     - file: chapter_list/usb_recorder
     - file: chapter_list/microphone_recorder
-    - file: chapter_list/mold_making
     - file: chapter_list/hardware_misc
 
   - caption: Software

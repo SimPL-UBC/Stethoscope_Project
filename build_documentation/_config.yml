@@ -3,6 +3,7 @@
 
 title: Stethoscope Project
 author: SimPL
+copyright: "2024"
 logo: D:/repository/simpl/Stethoscope_Project/image/simpl_logo.png
 
 
@@ -22,9 +23,9 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+  url: https://github.com/SimPL-UBC/Stethoscope_Project
+  path_to_book: build_documentation
+  branch: main
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
