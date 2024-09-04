@@ -11,6 +11,7 @@ parts:
 
   - caption: Software
     chapters:
+      - file: chapter_list/nmf
       - file: chapter_list/analysis
       - file: chapter_list/HRV
       - file: chapter_list/heart_murmur_vis
